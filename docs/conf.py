@@ -50,7 +50,8 @@ pygments_style = 'sphinx'
 #
 #import sphinx_glpi_theme
 
-html_theme = "glpi"
+#html_theme = "glpi"
+html_theme = 'alabaster'
 
 #html_theme_path = sphinx_glpi_theme.get_html_themes_path()
 

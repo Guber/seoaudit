@@ -3,44 +3,19 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to green-light-seo's documentation!
-===========================================
+seoaudit documentation
+**************************
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
-*****
-Checks
-*****
+   using
+   api
 
-Content checks
-########
-
-
-.. automodule:: seoaudit.checks.content
-    :members:
-
-
-Page checks
-########
-
-
-
-.. automodule:: seoaudit.checks.page
-    :members:
-
-
-
-Site checks
-########
-
-
-.. automodule:: seoaudit.checks.site
-    :members:
 
 Indices and tables
-==================
+------------------
 
 * :ref:`genindex`
 * :ref:`modindex`

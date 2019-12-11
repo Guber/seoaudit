@@ -137,26 +137,21 @@ class SEOAuditer(object):
 
 
 def main():
-    from nltk.corpus import stopwords
-    stop_words = stopwords.words('english')
-
-    from nltk.stem.porter import PorterStemmer
-    stemmer = PorterStemmer()
+    # from nltk.corpus import stopwords
+    # stop_words = stopwords.words('english')
+    #
+    # from nltk.stem.porter import PorterStemmer
+    # stemmer = PorterStemmer()
 
     page_tests = [
         (PageCheck.TEXT_TO_CODE_RATIO, {"min_ratio": 0.1}),
         (PageCheck.DOM_SIZE, {"max_size": 1500}),
         [PageCheck.ELEMENTS_SIMILARITY,
-         {"el1_query": "/*", "el2_query": "/html/head/title", "match_most_common": 5, "stop_words": stop_words,
-          "stemmer": stemmer}],
+         {"el1_query": "/*", "el2_query": "/html/head/title", "match_most_common": 5}],
         [PageCheck.ELEMENTS_SIMILARITY,
-         {"el1_query": "/*", "el2_query": "/html/head/meta[@name='description']/@content", "match_most_common": 5,
-          "stop_words": stop_words,
-          "stemmer": stemmer}],
+         {"el1_query": "/*", "el2_query": "/html/head/meta[@name='description']/@content", "match_most_common": 5}],
         [PageCheck.ELEMENTS_SIMILARITY,
-         {"el1_query": "//h1", "el2_query": "/html/head/meta[@name='description']/@content", "match_most_common": 5,
-          "stop_words": stop_words,
-          "stemmer": stemmer}],
+         {"el1_query": "//h1", "el2_query": "/html/head/meta[@name='description']/@content", "match_most_common": 5}],
         [PageCheck.ELEMENTS_COUNT, {"query": "(//h2)", "min_count": 2}],
         [PageCheck.STRUCTURED_DATA_FOUND, {"type": "json-ld", "property": "@type", "value": "Organization"}],
         [SiteCheck.TITLE_REPETITION],

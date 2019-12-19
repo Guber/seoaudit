@@ -110,6 +110,9 @@ setup(
     # entry_points={
     #     'console_scripts': ['mycli=mymodule:cli'],
     # },
+    entry_points={
+        'console_scripts': ['seoaudit=seoaudit.__main__:main'],
+    },
     install_requires=REQUIRED,
     extras_require=EXTRAS,
     include_package_data=True,

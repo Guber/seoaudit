@@ -11,20 +11,22 @@ Typical usage example:
 
 
 Todo:
-    * SEOAuditer initialization with list of urls
+    * SEOAuditor initialization with list of urls
     * CLI support and outside config file support (https://martin-thoma.com/configuration-files-in-python/)
     * tests :)
     * output results as html
 """
 
 import json
+import time
 
 from seoaudit.checks.element import ElementCheck, AbstractElementCheck, check_content
 from seoaudit.checks.site import SiteCheck, check_site
 from seoaudit.checks.page import PageCheck, check_page
 from seoaudit.analyzer import SiteParser, SeleniumPageParser, LXMLPageParser
 
-class SEOAuditer(object):
+
+class SEOAuditor(object):
     """ Takes a list of urls and runs element, page and site checks on them. Output is returned in JSON format."""
 
     def __init__(self, url, site_parser: SiteParser, page_checks, element_checks):
@@ -126,13 +128,13 @@ class SEOAuditer(object):
         print("Running checks for url: {}".format(self.__site_parser.get_current_url()))
         self.run_checks_for_current_page()
 
-        with open('seo_audit.json', 'w') as fp:
+        with open('seo_audit_' + str(time.time()) + '.json', 'w') as fp:
             json.dump(self.__results, fp, indent=4)
-        while self.__site_parser.parse_next_page():
-            print("Running checks for url: {}".format(self.__site_parser.get_current_url()))
-            self.run_checks_for_current_page()
 
-            with open('seo_audit.json', 'w') as fp:
+            while self.__site_parser.parse_next_page():
+                print("Running checks for url: {}".format(self.__site_parser.get_current_url()))
+                self.run_checks_for_current_page()
+
                 json.dump(self.__results, fp, indent=4)
 
 
@@ -191,7 +193,7 @@ def main():
     site_parser = SiteParser(url, LXMLPageParser(url), urls=None, parse_sitemap_urls=True)
 
     # initiate auditer object
-    auditer = SEOAuditer(url, site_parser, page_tests, element_tests)
+    auditer = SEOAuditor(url, site_parser, page_tests, element_tests)
     auditer.run_checks_for_site()
 
 

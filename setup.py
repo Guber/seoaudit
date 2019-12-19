@@ -18,7 +18,7 @@ URL = 'https://github.com/Guber/seoaudit'
 EMAIL = 'emanuel.guberovic@gmail.com'
 AUTHOR = 'Emanuel Guberovic'
 REQUIRES_PYTHON = '>=3.6.0'
-VERSION = '0.1dev'
+VERSION = '0.0.1dev'
 
 # What packages are required for this module to be executed?
 REQUIRED = [

@@ -1,6 +1,6 @@
 # SEOAudit
 
-SEO tool that analyzer a set of urls, crawls the pages and audits a set of predefiend checks element, page and site
+SEO tool for analyzing a set of urls, crawls the pages and audits a set of predefined checks element, page and site
  tests on them.
 
 ## Requirements

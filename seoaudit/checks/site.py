@@ -121,7 +121,7 @@ class PageCrawlableCheck(AbstractSiteCheck):
         if len(elements) >= 1:
             element = elements[0]
             content = parser.page_parser.get_element_attribute(element, "content")
-            can_fetch &= ("noindex" not in content and "none" not in content)
+            can_fetch &= (not content or "noindex" not in content and "none" not in content)
 
         return can_fetch
 

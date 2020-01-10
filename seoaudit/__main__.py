@@ -38,6 +38,7 @@ def main():
 
     print("-----------------------")
     print("SEO Auditor finished.")
+    print("Results stored in: {}".format(auditer.result_filename))
 
 
 if __name__ == "__main__":

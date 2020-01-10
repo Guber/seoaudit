@@ -34,6 +34,7 @@ class SEOAuditor(object):
         self.__site_parser = site_parser
         self.__results = {}
         self.__checks = {"page_checks": page_checks, "element_checks": element_checks}
+        self.result_filename = 'seo_audit_' + str(time.time()) + '.json'
 
     def run_check(self, check, kwargs=None):
         """
@@ -128,7 +129,7 @@ class SEOAuditor(object):
         print("Running checks for url: {}".format(self.__site_parser.get_current_url()))
         self.run_checks_for_current_page()
 
-        with open('seo_audit_' + str(time.time()) + '.json', 'w') as fp:
+        with open(self.result_filename, 'w') as fp:
             json.dump(self.__results, fp, indent=4)
 
             while self.__site_parser.parse_next_page():

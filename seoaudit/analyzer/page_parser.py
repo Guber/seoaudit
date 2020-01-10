@@ -257,6 +257,9 @@ class LXMLPageParser(AbstractPageParser):
         Returns:
             HTML element's attribute text value
         """
+        if element is None:
+            return None
+
         if attribute == "textContent":
             content = element.text
         else:

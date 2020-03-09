@@ -18,8 +18,16 @@ def main():
     # Load the configuration file
     if args.config:
         import importlib
+        import os
+
         try:
-            cfg = importlib.import_module(args.config)
+            module_name = args.config
+            module_file_path = os.path.abspath(os.getcwd()) + "\\" + module_name + ".py"
+            module_spec = importlib.util.spec_from_file_location(
+                module_name, module_file_path)
+            cfg = importlib.util.module_from_spec(module_spec)
+            module_spec.loader.exec_module(cfg)
+
             print("Using config file {}".format(args.config))
         except ImportError as err:
             print('Error:', err)

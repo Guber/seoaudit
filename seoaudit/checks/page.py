@@ -163,8 +163,8 @@ class ElementsSimilarityCheck(AbstractPageCheck):
         # if a keyword from most common first elements that deosnt exist in second element is found return False
         for w in element_1_dict.most_common(match_most_common):
             if w[0] not in element_2_words:
-                return False
-        return True
+                return False, element_1_dict.most_common(match_most_common), element_2_words
+        return True, element_1_dict.most_common(match_most_common), element_2_words
 
 
 class ElementsCountCheck(AbstractPageCheck):

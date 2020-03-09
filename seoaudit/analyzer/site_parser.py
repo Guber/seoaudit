@@ -26,7 +26,8 @@ class SiteParser(object):
     """ Website level parser, uses a page parser object as the core of it's parsing functionalities with the urls
     list being predefined or crawled from the sitemap file. """
 
-    def __init__(self, base_url, page_parser: AbstractPageParser = None, urls=None, parse_sitemap_urls=False):
+    def __init__(self, base_url, page_parser: AbstractPageParser = None, urls=None, sitemap_link=None,
+                 parse_sitemap_urls=False):
         """
 
         Args:
@@ -53,21 +54,25 @@ class SiteParser(object):
 
         self.base_url = base_url
 
-        # crawl sitemap referenced by head link[@rel='sitemap'] metadata of base url
         self.sitemap_urls = []
-        sitemap_link = self.page_parser.get_elements("(/html/head/link[@rel='sitemap'])/@href")
-        sitemap_link = sitemap_link[0] if len(sitemap_link) >= 1 else None
+
+        # crawl sitemap referenced by head link[@rel='sitemap'] metadata of base url
+        if sitemap_link is None:
+            sitemap_link = self.page_parser.get_elements("(/html/head/link[@rel='sitemap'])/@href")
+            sitemap_link = sitemap_link[0] if len(sitemap_link) >= 1 else None
 
         if sitemap_link is not None:
             r = requests.get(urllib.parse.urljoin(self.base_url, sitemap_link))
             try:
                 self.sitemap = lxml.etree.fromstring(r.content)
+
                 if parse_sitemap_urls:
                     for sitemap_el in self.sitemap:
                         self.urls.append(sitemap_el[0].text)
                         self.sitemap_urls.append(sitemap_el[0].text)
 
             except lxml.etree.XMLSyntaxError:
+                print("xml error")
                 self.sitemap = None
 
         # crawl robots.txt file found in base_url + "/robots.txt"

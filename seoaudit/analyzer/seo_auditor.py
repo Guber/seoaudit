@@ -76,6 +76,7 @@ class SEOAuditor(object):
         for element in elements:
             content = self.__site_parser.page_parser.get_element_attribute(element, content_attribute)
             element_str = self.__site_parser.page_parser.get_element_code(element)
+            element_str = (element_str[:150] + '..') if len(element_str) > 150 else element_str
 
             if content is None or len(content) == 0:
                 self.append_result(False, "ATTRIBUTE_FOUND", element_str, [content_attribute])
@@ -111,8 +112,8 @@ class SEOAuditor(object):
         return self.__results
 
     def clear_results(self):
-        """ Clear results list. """
-        self.__results = []
+        """ Clear results dict. """
+        self.__results = {}
 
     def run_checks_for_current_page(self):
         """ Runs predefined page and element checks. """
@@ -130,12 +131,13 @@ class SEOAuditor(object):
         self.run_checks_for_current_page()
 
         with open(self.result_filename, 'w') as fp:
+            fp.seek(0)
             json.dump(self.__results, fp, indent=4)
 
             while self.__site_parser.parse_next_page():
                 print("Running checks for url: {}".format(self.__site_parser.get_current_url()))
                 self.run_checks_for_current_page()
-
+                fp.seek(0)
                 json.dump(self.__results, fp, indent=4)
 
 

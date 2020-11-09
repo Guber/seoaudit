@@ -7,7 +7,6 @@ SEO tool for analyzing a set of urls, crawls the pages and audits a set of prede
 
 - Python3 CLI script with JSON (and soon HTML) reports
 - Python3 API
-- Open-source project: https://github.com/Guber/seoaudit
 - Tests configurable and parameterized
 
 ### Why yet another SEO tool?

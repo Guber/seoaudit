@@ -23,6 +23,7 @@ import abc
 import sys
 import string
 from nltk import word_tokenize
+import nltk
 from collections import Counter
 import extruct
 
@@ -139,8 +140,14 @@ class ElementsSimilarityCheck(AbstractPageCheck):
 
         table = str.maketrans('', '', string.punctuation)
 
-        element_1_tokens = [w.lower() for w in word_tokenize(element_1)]
-        element_2_tokens = [w.lower() for w in word_tokenize(element_2)]
+        try:
+            element_1_tokens = [w.lower() for w in word_tokenize(element_1)]
+            element_2_tokens = [w.lower() for w in word_tokenize(element_2)]
+        except LookupError:
+            nltk.download('punkt')
+            element_1_tokens = [w.lower() for w in word_tokenize(element_1)]
+            element_2_tokens = [w.lower() for w in word_tokenize(element_2)]
+
         # remove all string punctuations
         element_1_tokens = [w.translate(table) for w in element_1_tokens]
         element_2_tokens = [w.translate(table) for w in element_2_tokens]

@@ -3,7 +3,6 @@ import argparse
 from seoaudit.analyzer.site_parser import SiteParser, LXMLPageParser
 from seoaudit.analyzer.seo_auditor import SEOAuditor
 
-
 def main():
     """The main routine."""
     parser = argparse.ArgumentParser(description='Run SEO checks on a set of urls')
@@ -49,7 +48,8 @@ def main():
 
     print("-----------------------")
     print("SEO Auditor finished.")
-    print("Results stored in: {}".format(auditer.result_filename))
+    print("Results stored in: {} and {}".format(auditer.result_filename, auditer.result_filename.replace('.json',
+                                                                                                         '.html')))
 
 
 if __name__ == "__main__":

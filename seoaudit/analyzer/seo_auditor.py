@@ -19,6 +19,7 @@ Todo:
 
 import json
 import time
+from json2html import *
 
 from seoaudit.checks.element import ElementCheck, AbstractElementCheck, check_content
 from seoaudit.checks.site import SiteCheck, check_site
@@ -139,6 +140,11 @@ class SEOAuditor(object):
                 self.run_checks_for_current_page()
                 fp.seek(0)
                 json.dump(self.__results, fp, indent=4)
+
+            with open(self.result_filename.replace('.json','.html'), 'w', encoding="utf-8") as f:
+                f.write(json2html.convert(json.dumps(self.__results, indent=4)))
+
+
 
 
 def main():

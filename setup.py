@@ -18,11 +18,11 @@ URL = 'https://github.com/Guber/seoaudit'
 EMAIL = 'emanuel.guberovic@gmail.com'
 AUTHOR = 'Emanuel Guberovic'
 REQUIRES_PYTHON = '>=3.6.0'
-VERSION = '0.0.1dev2'
+VERSION = '0.0.1dev3'
 
 # What packages are required for this module to be executed?
 REQUIRED = [
-    'requests', 'lxml', 'nltk', 'extruct', 'selenium'
+    'requests', 'lxml', 'nltk', 'extruct', 'selenium', 'json2html'
 ]
 
 # What packages are optional?

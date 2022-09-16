@@ -22,7 +22,7 @@ copyright = '2019, Emanuel Guberović'
 author = 'Emanuel Guberović'
 
 # The full version, including alpha/beta/rc tags
-release = '0.1dev'
+release = '0.1dev4'
 
 
 # -- General configuration ---------------------------------------------------
